@@ -1,9 +1,10 @@
+import AppRouter from "./route/AppRouter"
 
 
 function App() {
   return (
     <>
-      This is my app component
+      <AppRouter/>
    </>
   )
 }
