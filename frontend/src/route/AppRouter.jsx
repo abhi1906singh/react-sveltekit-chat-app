@@ -3,11 +3,13 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import PrivateRoute from "./PrivateRoute";
 import LoginForm from "../pages/Login";
+import SignupForm from "../pages/Signup";
 
 function AppRouter() {
   return (
     <Routes>
       <Route path="/login" element={<LoginForm />} />
+       <Route path="/signup" element={<SignupForm />} />
 
       <Route element={<PrivateRoute />} >
       <Route path="/" element={<Home/>}/>

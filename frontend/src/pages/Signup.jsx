@@ -20,10 +20,26 @@ export default function SignupForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  async  function handleSubmit(e) {
+          e.preventDefault();
+      try {
+            const response = await fetch(" http://localhost:3000/api/signup", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(formData)
+});
+
+// const data = await res.json();
+console.log(response);
+            
+        } catch (error) {
+            console.log(error,'=======')
+        } finally {
+                setSubmitted(true);
+        }
+    }
 
   return (
     <div className="signup-container">
