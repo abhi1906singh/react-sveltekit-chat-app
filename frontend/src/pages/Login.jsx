@@ -18,10 +18,31 @@ export default function LoginForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+
+  async  function handleSubmit(e) {
+          e.preventDefault();
+      try {
+            const res = await fetch("/api/users", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: "John",
+    email: "john@example.com",
+    password: "123456"
+  })
+});
+
+const data = await res.json();
+console.log(data);
+            
+        } catch (error) {
+            console.log(error,'=======')
+        } finally {
+                setSubmitted(true);
+        }
+    }
 
   return (
     <div className="signup-container">
