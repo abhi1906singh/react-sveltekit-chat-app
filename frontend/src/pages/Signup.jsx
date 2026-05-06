@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../styles/signup.css";
+import { useNavigate } from "react-router-dom";
 
 
 export default function SignupForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,12 +32,12 @@ export default function SignupForm() {
   },
   body: JSON.stringify(formData)
 });
-
-// const data = await res.json();
-console.log(response);
+      if(response.ok){
+        navigate("/login");
+      }
             
         } catch (error) {
-            console.log(error,'=======')
+            console.log(error)
         } finally {
                 setSubmitted(true);
         }
