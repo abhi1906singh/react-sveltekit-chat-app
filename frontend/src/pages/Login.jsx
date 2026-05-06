@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/signup.css";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({
@@ -22,21 +23,17 @@ export default function LoginForm() {
   async  function handleSubmit(e) {
           e.preventDefault();
       try {
-            const res = await fetch("/api/users", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name: "John",
-    email: "john@example.com",
-    password: "123456"
-  })
-});
+            const res = await fetch(" http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
 
-const data = await res.json();
-console.log(data);
-            
+      const data = await res.json();
+      console.log(data);
+                  
         } catch (error) {
             console.log(error,'=======')
         } finally {
@@ -85,6 +82,7 @@ console.log(data);
         {submitted && (
           <p className="success-message">Login submitted successfully!</p>
         )}
+        <div style={{ padding: "10px",display:"flex",justifyContent:"flex-end "}}>Not registered yet <Link to="/signup">Signup</Link></div>
       </form>
     </div>
   );
