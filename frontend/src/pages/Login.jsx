@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../styles/signup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
+    const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -32,7 +33,9 @@ export default function LoginForm() {
       });
 
       const data = await res.json();
-      console.log(data);
+        localStorage.setItem("token", data.jwtToken);
+        navigate('/');
+
                   
         } catch (error) {
             console.log(error,'=======')

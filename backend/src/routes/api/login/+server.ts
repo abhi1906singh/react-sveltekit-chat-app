@@ -1,6 +1,7 @@
 import { json } from "@sveltejs/kit";
 import { db } from "$lib/server/db";
 import type { RequestHandler } from "./$types";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -30,10 +31,15 @@ export const POST: RequestHandler = async ({ request }) => {
     if (!isMatch) {
       return json({ error: "Invalid credentials" }, { status: 401 });
     }
+    const token = jwt.sign(
+      { email: email },
+       "your_secret_key",  
+      { expiresIn: "1d" }    
+    )
 
     // 🔹 Success response
     return json({
-      message: "Login successful",
+      jwtToken: token,
       user: {
         id: user.id,
         name: user.name,
