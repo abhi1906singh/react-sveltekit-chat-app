@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import ChatList from "../component/ChatList"
-import TopBar from "../component/TopBar"
+import Header from "../component/Header"
 
 function Home() {
     const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/getusers") // adjust URL if needed
+    fetch("http://localhost:3000/api/users") // adjust URL if needed
       .then((res) => res.json())
       .then((data) => {
         setUsers(data.users);
@@ -19,7 +19,7 @@ function Home() {
         <ChatList users={users} />
         </div>
       <div style={{width:"85%"}}>
-        <TopBar/>
+        <Header/>
       </div>
     </div>
   )
