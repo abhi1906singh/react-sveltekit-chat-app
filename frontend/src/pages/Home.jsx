@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ChatList from "../component/ChatList"
-import TopBar from "../component/TopBar"
+import Header from "../component/Header"
 
 function Home() {
     const [users, setUsers] = useState([]);
@@ -19,7 +19,7 @@ function Home() {
         <ChatList users={users} />
         </div>
       <div style={{width:"85%"}}>
-        <TopBar/>
+        <Header/>
       </div>
     </div>
   )
